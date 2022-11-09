@@ -20,6 +20,27 @@ node* create_node(int value) {
     return result;
 }
 
+void printtree(node *root) {
+    if(root == NULL) {
+        printf(" ------ [ EMPTY ] ------ \n");
+        return;
+    }
+
+    int value = root->value;
+
+    printf(" [ NODE %d ]\n", value);
+
+    if(root->left != NULL) {
+        printf(" [ NODE %d ] has left ↓\n", value);
+        printtree(root->left);
+    }
+    
+    if(root->right != NULL) {
+        printf(" [ NODE %d ] has right ↓\n", value);
+        printtree(root->right);
+    }
+}
+
 int main() {
     node* root = create_node(0);
 
@@ -42,12 +63,7 @@ int main() {
     printf("Hello World!\n");
 
     // Examples
-    printf("node_1 data: %d\n", root->left->value);
-    printf("node_2 data: %d\n", root->right->value);
-    printf("node_3 data: %d\n", root->left->left->value);
-    printf("node_4 data: %d\n", root->left->right->value);
-    printf("node_5 data: %d\n", root->right->left->value);
-    printf("node_6 data: %d\n", root->right->right->value);
+    printtree(root);
 
     // Clean memory
     free(root);
